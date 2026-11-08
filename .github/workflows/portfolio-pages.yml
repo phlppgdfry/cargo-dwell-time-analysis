@@ -1,0 +1,51 @@
+name: Portfolio demo
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: portfolio-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: portfolio-test
+          POSTGRES_DB: portfolio
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: portfolio-test
+      PGDATABASE: portfolio
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-dev.txt
+      - run: python scripts/check_data.py
+      - run: node --check demo/app.js
+      - name: Execute schema, import and all analysis queries
+        run: |
+          psql -v ON_ERROR_STOP=1 -f sql/schema.sql
+          psql -v ON_ERROR_STOP=1 -c "\copy container_movements FROM 'demo/container_movements.csv' CSV HEADER"
+          psql -v ON_ERROR_STOP=1 -f sql/queries.sql
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: demo
+      - uses: actions/deploy-pages@v4
+        id: deployment

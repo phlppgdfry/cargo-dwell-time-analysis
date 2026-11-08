@@ -1,30 +1,31 @@
-# Executive Summary — Cargo Dwell Time Reduction
-**Port of Zeebrugge · Q4 2024 · Philippe Godfroy**
+# Executive summary — Cargo dwell time
 
-## Problem
-Average container dwell time: **6.4 days** — 38% above sector benchmark of 4.6 days.
-Estimated annual demurrage cost: **€2.1M**
+Independent synthetic portfolio case · Updated November 2026
 
-## Root Causes
-| # | Cause | % of delays |
-|---|-------|------------|
-| 1 | Documentation delay (manual B/L) | 43% |
-| 2 | Customs clearance backlog | 22% |
-| 3 | Port congestion (Tue/Wed peak) | 15% |
-| 4 | Late shipper pickup | 12% |
-| 5 | Inspection required | 8% |
+## Reproduced evidence
 
-## Recommendations
-1. **EDI integration** with Evergreen & MSC → −1.8 days avg dwell
-2. **Automate B/L matching** → doc time 4.2h → 1.1h
-3. **Redistribute arrival scheduling** → reduce Tue/Wed peak
-4. **Mobile supervisor dashboard** → real-time intervention
+The movement sheet contains 500 synthetic containers, a mean dwell of 5.982 days
+and €199,900 total sample demurrage. 295 movements exceed five days (59.0%).
+Documentation accounts for 128 of those delayed records (43.4%), customs for
+70 (23.7%), congestion for 40 (13.6%), late pickup for 37 (12.5%), and inspection
+for 20 (6.8%). These are sample observations, not verified real-world findings.
 
-## Expected Outcome
-| KPI | Baseline | Target |
-|-----|----------|--------|
-| Avg dwell time | 6.4 days | 4.8 days |
-| Containers >5d | 43% | 22% |
-| Annual saving | — | €840K |
+## Interpretation
 
-> Full analysis: [BRD.md](../BRD.md) · [UserStories.md](../UserStories.md) · [SQL queries](../sql/queries.sql)
+Documentation is the largest primary reason in this constructed dataset and
+is a suitable first hypothesis for discovery. An EDI or document-matching pilot
+would need validated timestamps, representative operational volumes, stakeholder
+input and controls for seasonality before assigning causality or financial ROI.
+
+## Planning assumptions
+
+The older 6.4-day baseline, €2.1M annual exposure, 4.8-day target and €840K savings
+were illustrative businesscase inputs. They are not calculated from these rows.
+The historical PDF and process diagrams retain that original scenario; they are
+not the authoritative output of the current reproducible analysis.
+
+## Review the work
+
+[Interactive demo](https://phlppgdfry.github.io/cargo-dwell-time-analysis/) ·
+[Requirements](../BRD.md) · [User stories](../UserStories.md) ·
+[SQL reproduction](../sql/queries.sql)

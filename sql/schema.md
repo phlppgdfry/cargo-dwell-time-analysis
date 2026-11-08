@@ -1,30 +1,30 @@
-# Database Schema — Port of Zeebrugge
+# Canonical dataset schema
 
-## container_movements
-| Column | Type | Description |
-|--------|------|-------------|
-| container_id | VARCHAR(15) | Unique ID (CNTR-XXXXXXX) |
-| arrival_date | DATE | Arrival at terminal |
-| departure_date | DATE | Departure from terminal |
-| shipper | VARCHAR(100) | Cargo owner |
-| shipping_agent | VARCHAR(100) | Freight forwarder |
-| container_type | VARCHAR(20) | 20ft/40ft/HC/Reefer |
-| cargo_type | VARCHAR(50) | Commodity |
-| delay_reason | VARCHAR(100) | Root cause if dwell > 5d |
-| doc_processing_hrs | DECIMAL(4,1) | Hours B/L to pre-clearance |
-| demurrage_cost_eur | DECIMAL(10,2) | Cost for days > 5d threshold |
+`sql/schema.sql` is the executable PostgreSQL definition. Column order matches
+`demo/container_movements.csv`, exported from the movement sheet in the workbook.
 
-## shipping_agents
-| Column | Type | Description |
-|--------|------|-------------|
-| id | INTEGER | Primary key |
-| agent_name | VARCHAR(100) | Agent company name |
-| edi_capable | BOOLEAN | EDI integration available |
+| Column | Type | Meaning |
+|---|---|---|
+| container_id | varchar(30), primary key | Synthetic unique movement ID |
+| arrival_date / departure_date | date | Terminal arrival and departure |
+| dwell_days | integer | Departure minus arrival; constrained in schema |
+| shipper / shipping_agent | varchar(100) | Fictional case-study attribution |
+| container_type / cargo_type | varchar | Equipment and commodity |
+| delay_reason | varchar(100) | Primary reason, or No delay |
+| doc_processing_hrs | numeric(8,2) | Documentation processing hours |
+| demurrage_cost_eur | numeric(12,2) | Sample record's cost |
 
-## container_delays
-| Column | Type | Description |
-|--------|------|-------------|
-| container_id | VARCHAR(15) | FK to container_movements |
-| dwell_days | INTEGER | Total days on terminal |
-| delay_reason | VARCHAR(100) | Primary delay category |
-| doc_processing_hours | DECIMAL(4,1) | Documentation processing time |
+There are no separate agent or delay tables in this flat source export. Queries
+group directly on the movement rows, avoiding duplicate joins and missing IDs.
+The five-day threshold is a demo analysis rule, not a contractual demurrage tariff.
+
+From the repository root in `psql`:
+
+```sql
+\i sql/schema.sql
+\copy container_movements FROM 'demo/container_movements.csv' CSV HEADER
+\i sql/queries.sql
+```
+
+Import into an empty table. For a deliberate reload, clear the demonstration
+table first; the primary key rejects duplicate imports.
