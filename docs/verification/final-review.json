@@ -1,0 +1,38 @@
+{
+  "name": "cargo-dwell-time-analysis",
+  "url": "https://phlppgdfry.github.io/cargo-dwell-time-analysis/",
+  "tested_route": "https://phlppgdfry.github.io/cargo-dwell-time-analysis/",
+  "checked_at": "2026-11-15T18:57:27.176Z",
+  "title": "CargoLens — Dwell time analysis",
+  "http_status": 200,
+  "desktop": {
+    "width": 1440,
+    "scroll_width": 1440
+  },
+  "mobile": {
+    "width": 390,
+    "scroll_width": 390
+  },
+  "runtime_errors": [],
+  "status": "passed",
+  "browser": "Chromium via Playwright",
+  "browser_plugin": "unavailable",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 1040
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "interaction_checks": [
+    "500 source records and 5.98-day displayed baseline",
+    "MSC cohort contains 92 records",
+    "Documentation drill-down exports 128 records",
+    "Zero-day sensitivity reproduces baseline; three-day sensitivity reduces modelled mean",
+    "Empty search and reset work"
+  ],
+  "scope": "Public synthetic-data portfolio demo. No live terminal or Business Central operations were performed."
+}

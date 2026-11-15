@@ -28,3 +28,15 @@ The public deployment is built from the committed source by
 `.github/workflows/portfolio-pages.yml`. Review its Actions run for the exact
 commit and deployment result; this note is not a claim of production integration
 certification, a full accessibility audit or a penetration test.
+
+## Final review — 15 November 2026
+
+The published demo was rechecked in Chromium using Playwright at 1440 × 1040
+and 390 × 844. Page identity, meaningful content, absence of framework overlays,
+working user interactions and CSV contents all passed. No uncaught JavaScript
+errors or page-level horizontal overflow were observed. Desktop and mobile
+screenshots were refreshed from the published demo.
+
+The exact routes, viewports and interaction checks are recorded in
+[the machine-readable final review](verification/final-review.json).
+The finalized source is preserved by the `portfolio-2026-11-15` release tag.

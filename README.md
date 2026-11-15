@@ -80,3 +80,7 @@ then run [the analysis queries](sql/queries.sql). See [schema notes](sql/schema.
 GitHub Actions checks the data export and publishes the credential-free demo.
 Philippe Godfroy · Business analysis, logistics and software development.
 MIT license; see [LICENSE](LICENSE).
+
+## Final portfolio release
+
+[Final source snapshot — 15 November 2026](https://github.com/phlppgdfry/cargo-dwell-time-analysis/releases/tag/portfolio-2026-11-15) · [Verification evidence](docs/VERIFICATION.md)
