@@ -21,8 +21,7 @@ input and controls for seasonality before assigning causality or financial ROI.
 
 The older 6.4-day baseline, €2.1M annual exposure, 4.8-day target and €840K savings
 were illustrative businesscase inputs. They are not calculated from these rows.
-The historical PDF and process diagrams retain that original scenario; they are
-not the authoritative output of the current reproducible analysis.
+The [archived original PDF](archive/executive-summary-original.pdf) and historical process diagrams retain that scenario. The [current management PDF](executive-summary.pdf) is generated from the same reconciled records as the dashboard. A 1.5-day documentation sensitivity affects 128 records and changes the mean to 5.598 days; this is not a causal forecast.
 
 ## Review the work
 

@@ -1,0 +1,29 @@
+name: Browser review
+on: pull_request
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-dev.txt
+      - run: python scripts/check_data.py
+      - run: python scripts/build_summary.py
+      - run: python scripts/check_summary.py
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-review-report
+          path: playwright-report/
+          retention-days: 7

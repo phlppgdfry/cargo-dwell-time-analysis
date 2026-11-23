@@ -44,7 +44,7 @@ to the movement sheet; the new dashboard deliberately computes from raw rows.
 The historical case proposed a 6.4-day baseline, €2.1M annual cost, and a 25%
 improvement target. These are planning assumptions, not findings reproduced by
 this 500-row sample. No real interviews, sector benchmark validation or realised
-savings are claimed. The original PDF is retained as a historical illustrative
+savings are claimed. The [original PDF](findings/archive/executive-summary-original.pdf) is archived as a historical illustrative
 businesscase; use the updated [executive summary](findings/executive-summary.md)
 for the current, reconciled interpretation.
 
@@ -81,6 +81,17 @@ GitHub Actions checks the data export and publishes the credential-free demo.
 Philippe Godfroy · Business analysis, logistics and software development.
 MIT license; see [LICENSE](LICENSE).
 
-## Final portfolio release
+## Earlier portfolio release
 
 [Final source snapshot — 15 November 2026](https://github.com/phlppgdfry/cargo-dwell-time-analysis/releases/tag/portfolio-2026-11-15) · [Verification evidence](docs/VERIFICATION.md)
+
+
+## Portfolio refinement — 24 November 2026
+
+The management brief is rebuilt from the reconciled 500-row source: mean 5.982 days, 295 movements above five days and EUR 199,900 sample demurrage. It is downloadable inside the dashboard. The original assumption-based PDF is preserved in findings/archive/.
+
+Browser checks run before every default-branch Pages deployment, in Chromium at 1440×1000 and 390×844. They exercise filters, empty states and actual downloads. Run `npm ci` followed by `npm run test:e2e`. CI retains the HTML report and failure traces. Mobile here means Chromium emulation, not a physical-device or Safari certification.
+
+Rebuild the brief: `python -m pip install -r requirements-dev.txt`, `python scripts/build_summary.py`, `python scripts/check_summary.py`. [Current brief](findings/executive-summary.pdf) · [Archived original](findings/archive/executive-summary-original.pdf).
+
+[Current refined source release — 24 November 2026](https://github.com/phlppgdfry/cargo-dwell-time-analysis/releases/tag/portfolio-2026-11-24). Browser checks also run on pull requests.

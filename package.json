@@ -1,0 +1,11 @@
+{
+  "name": "cargo-dwell-time-analysis-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "@playwright/test": "1.65.1"
+  },
+  "scripts": {
+    "test:e2e": "playwright test"
+  }
+}

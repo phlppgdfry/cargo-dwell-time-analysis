@@ -1,3 +1,11 @@
+# Verification — 24 November 2026
+
+The management brief is rebuilt from the reconciled 500-row source: mean 5.982 days, 295 movements above five days and EUR 199,900 sample demurrage. It is downloadable inside the dashboard. The original assumption-based PDF is preserved in findings/archive/.
+
+Current checks: production build, functional browser flows on desktop/mobile, CSV/download contents and no uncaught browser errors. PDF source reconciliation and gate-validator checks run in their respective CI pipelines. Updated screenshots are actual renders of the production artifacts.
+
+## Earlier release evidence
+
 # Verification record
 
 Portfolio refresh · 8 November 2026

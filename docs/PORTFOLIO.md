@@ -25,7 +25,12 @@ python3 scripts/export_data.py
 python3 scripts/check_data.py
 ```
 
-The movement sheet is canonical. The other workbook sheets and historical PDF
+The movement sheet is canonical. The other workbook sheets and archived original PDF
 are illustrative narrative material, not independently reconciled analysis.
 Use `sql/schema.sql` and `sql/queries.sql` to reproduce the same metrics in
 PostgreSQL. All company names and movements form a synthetic portfolio exercise.
+
+
+## Updated walkthrough — 24 November 2026
+
+The management brief is rebuilt from the reconciled 500-row source: mean 5.982 days, 295 movements above five days and EUR 199,900 sample demurrage. It is downloadable inside the dashboard. The original assumption-based PDF is preserved in findings/archive/.
