@@ -94,4 +94,4 @@ Browser checks run before every default-branch Pages deployment, in Chromium at 
 
 Rebuild the brief: `python -m pip install -r requirements-dev.txt`, `python scripts/build_summary.py`, `python scripts/check_summary.py`. [Current brief](findings/executive-summary.pdf) · [Archived original](findings/archive/executive-summary-original.pdf).
 
-[Current refined source release — 24 November 2026](https://github.com/phlppgdfry/cargo-dwell-time-analysis/releases/tag/portfolio-2026-11-24). Browser checks also run on pull requests.
+[Current refined source release — 24 November 2026](https://github.com/phlppgdfry/cargo-dwell-time-analysis/releases/latest). Browser checks also run on pull requests.

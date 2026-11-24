@@ -54,7 +54,8 @@ $('clear-cause').onclick=()=>{selectedCause='';page=0;render();};
 $('reset').onclick=()=>{for(const id of ['agent','year','search'])$(id).value='';selectedCause='';page=0;render();};
 $('improvement').oninput=model;
 $('export').onclick=()=>{
+  if (!data.length) return;
   const fields=Object.keys(data[0]);const csv=[fields,...rows.map(r=>fields.map(k=>r[k]))].map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n');
   const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='cargo-selection.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
-fetch('data.json').then(r=>{if(!r.ok)throw Error('Dataset unavailable');return r.json();}).then(records=>{data=records;for(const name of [...new Set(data.map(r=>r.shipping_agent))].sort()){$('agent').add(new Option(name,name));}render();}).catch(()=>{$('feedback').textContent='The dataset could not be loaded. Reload the page, or run python3 -m http.server from this project locally.';for(const el of document.querySelectorAll('button,input,select'))el.disabled=true;});
+fetch('data.json').then(r=>{if(!r.ok)throw Error('Dataset unavailable');return r.json();}).then(records=>{if (!Array.isArray(records) || !records.length) throw Error('Dataset is empty');data=records;$('export').disabled=false;for(const name of [...new Set(data.map(r=>r.shipping_agent))].sort()){$('agent').add(new Option(name,name));}render();}).catch(()=>{$('feedback').textContent='The dataset could not be loaded. Reload the page, or run python3 -m http.server from this project locally.';for(const el of document.querySelectorAll('button,input,select'))el.disabled=true;});

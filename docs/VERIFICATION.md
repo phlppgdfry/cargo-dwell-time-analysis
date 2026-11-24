@@ -1,3 +1,9 @@
+# Closeout audit — 24 November 2026
+
+CSV export is disabled until the dataset is loaded. Missing or empty data produces an explained error state. Workbook/JSON/CSV reconciliation and the one-page management PDF checks pass.
+
+4 Chromium browser checks passed across 1440×1000 desktop and 390×844 mobile emulation. No uncaught page errors or horizontal page overflow were observed. The full five-project set contains 20 browser checks. Current npm audit: zero known vulnerabilities. Local Markdown links resolve. Browser plugin not available; validation used Playwright. Physical devices, Safari and production terminal/ERP integrations are outside this synthetic portfolio acceptance scope.
+
 # Verification — 24 November 2026
 
 The management brief is rebuilt from the reconciled 500-row source: mean 5.982 days, 295 movements above five days and EUR 199,900 sample demurrage. It is downloadable inside the dashboard. The original assumption-based PDF is preserved in findings/archive/.

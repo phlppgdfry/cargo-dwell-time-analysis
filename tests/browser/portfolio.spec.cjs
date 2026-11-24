@@ -22,3 +22,13 @@ test('source metrics, filtered export, sensitivity model and current PDF', async
   const pdf=await downloaded(page,()=>page.getByRole('link',{name:'Download management brief (PDF)'}).click());
   expect(pdf.name).toBe('management-summary.pdf');expect(pdf.data.subarray(0,5).toString()).toBe('%PDF-');
 });
+
+test('export waits for data and dataset failures have a usable error state', async ({page})=>{
+  let release; const gate=new Promise(resolve=>release=resolve);
+  await page.route('**/data.json',async route=>{await gate;await route.continue();});
+  await page.goto('/');await expect(page.getByRole('button',{name:'Export selection',exact:true})).toBeDisabled();
+  release();await expect(page.getByRole('button',{name:'Export selection',exact:true})).toBeEnabled();
+  await page.unroute('**/data.json');await page.route('**/data.json',route=>route.fulfill({status:503,body:'Unavailable'}));
+  await page.reload();await expect(page.locator('#feedback')).toContainText('could not be loaded');
+  await expect(page.getByRole('button',{name:'Export selection',exact:true})).toBeDisabled();
+});
